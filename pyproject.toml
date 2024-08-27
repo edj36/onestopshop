@@ -8,10 +8,10 @@ version = "0.1.0"
 description = "Tools for work"
 readme = "README.rst"
 authors = [
-  {name = "Eric Johnson", email = "audreyr@example.com"}
+  {name = "Eric Johnson", email = "edj36@cornell.edu"}
 ]
 maintainers = [
-  {name = "Eric Johnson", email = "audreyr@example.com"}
+  {name = "Eric Johnson", email = "edj36@cornell.edu"}
 ]
 classifiers = [
 
