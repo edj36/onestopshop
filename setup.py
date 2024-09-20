@@ -2,16 +2,17 @@
 # -*- coding: utf-8 -*-
 
 import pip
+from pip._internal.req import parse_requirements
 
-try: # for pip >= 10
-    from pip._internal.req import parse_requirements
-except ImportError: # for pip <= 9.0.3
-    from pip.req import parse_requirements
+# try: # for pip >= 10
+#     from pip._internal.req import parse_requirements
+# except ImportError: # for pip <= 9.0.3
+#     from pip.req import parse_requirements
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
-    from distutils.core import setup
+    from distutils.core import setup, find_packages
 
 
 with open('README.rst') as readme_file:
@@ -32,8 +33,8 @@ parsed_test_requirements = parse_requirements(
 )
 
 
-requirements = [str(ir.req) for ir in parsed_requirements]
-test_requirements = [str(tr.req) for tr in parsed_test_requirements]
+requirements = [str(ir.requirement) for ir in parsed_requirements]
+test_requirements = [str(tr.requirement) for tr in parsed_test_requirements]
 
 
 setup(
@@ -44,16 +45,17 @@ setup(
     author="Eric Johnson",
     author_email='edj36@cornell.edu',
     url='https://github.com/edj36/onestopshop',
-    packages=[
-        'onestopshop',
-    ],
-    package_dir={'onestopshop':
-                 'onestopshop'},
+    # packages=[
+    #     'onestopshop',
+    # ],
+    packages=find_packages('src', exclude=['test']),
+    # package_dir={'onestopshop':
+    #              'onestopshop'},
     include_package_data=True,
     install_requires=requirements,
     license="MIT",
     zip_safe=False,
-    keywords='onestopshop',
+    # keywords='onestopshop',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
